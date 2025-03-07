@@ -2,6 +2,7 @@ import Link from "next/link"
 import { initialTickets } from "@/data"
 import { ticketPath } from "@/path"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -36,6 +37,7 @@ const TicketsPage = () => {
           All your tickets at one place
         </p>
       </div>
+      <Separator />
       <div className="flex-1 flex flex-col items-center gay-y-4 animate-fade-in-from-top">
         {
           initialTickets.map(ticket => (
