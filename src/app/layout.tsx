@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { homePath, ticketsPath } from "@/path";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,12 +39,15 @@ export default function RootLayout({
           "
         >
           <div>
-            <Link href={homePath()} className="text-lg font-bold">
-              Home
+            <Link href={homePath()}>
+              <Button variant={'outline'}>Home</Button>
             </Link>
           </div>
           <div>
-            <Link href={ticketsPath()} className="text-sm underline">
+            <Link
+              href={ticketsPath()}
+              className={buttonVariants({ variant: 'outline' })}
+            >
               Tickets
             </Link>
           </div>
