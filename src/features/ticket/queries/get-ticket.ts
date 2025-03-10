@@ -1,4 +1,5 @@
 import { initialTickets } from "@/data"
+
 import type { Ticket } from "../types"
 
 export const getTickets = async (): Promise<Ticket[]> => {
