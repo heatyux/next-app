@@ -1,5 +1,4 @@
 import { Suspense } from "react"
-
 import { Heading } from "@/components/heading"
 import { Spinner } from "@/components/spinner"
 import { TicketList } from "@/features/ticket/components/ticket-list"
