@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import { formErrorToActionState } from '@/components/form/utils/to-action-state'
 import { prisma } from '@/lib/prisma'
 import { ticketPath, ticketsPath } from '@/path'
 
@@ -30,10 +31,7 @@ export const upsertTicket = async (
       update: data
     })
   } catch (error) {
-    console.log(error)
-    return {
-      message: 'Something went wrong'
-    }
+    return formErrorToActionState(error)
   }
 
   revalidatePath(ticketsPath())
