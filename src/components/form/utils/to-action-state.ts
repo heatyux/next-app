@@ -1,7 +1,7 @@
 import { ZodError } from 'zod'
 
 export type ActionState = {
-  state: 'IDLE' | 'SUCCESS' | 'ERROR',
+  state?:  'SUCCESS' | 'ERROR',
   message: string,
   playload?: FormData,
   fieldErrors: Record<string, string[] | undefined>,
@@ -9,7 +9,6 @@ export type ActionState = {
 }
 
 export const EMPTY_ACTION_STATE: ActionState = {
-  state: 'IDLE',
   message: '',
   fieldErrors: {},
   timestamp: Date.now()
@@ -42,7 +41,7 @@ export const formErrorToActionState = (
     // return generic error message
   } else {
     return {
-      state: 'IDLE',
+      state: 'ERROR',
       message: 'An unknown error occurred',
       playload: formData,
       fieldErrors: {},
