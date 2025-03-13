@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { formErrorToActionState } from '@/components/form/utils/to-action-state'
+import { formErrorToActionState, toActionState } from '@/components/form/utils/to-action-state'
 import { prisma } from '@/lib/prisma'
 import { ticketPath, ticketsPath } from '@/path'
 
@@ -40,7 +40,5 @@ export const upsertTicket = async (
     redirect(ticketPath(id))
   }
 
-  return {
-    message: 'Ticket created'
-  }
+  return toActionState('SUCCESS', 'Ticket created')
 }
