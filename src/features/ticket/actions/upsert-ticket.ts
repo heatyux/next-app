@@ -31,7 +31,7 @@ export const upsertTicket = async (
       update: data
     })
   } catch (error) {
-    return formErrorToActionState(error)
+    return formErrorToActionState(error, formData)
   }
 
   revalidatePath(ticketsPath())

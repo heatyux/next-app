@@ -3,6 +3,7 @@ import { ZodError } from 'zod'
 export type ActionState = {
   state: 'IDLE' | 'SUCCESS' | 'ERROR',
   message: string,
+  playload?: FormData,
   fieldErrors: Record<string, string[] | undefined>,
   timestamp: number
 }
@@ -14,12 +15,16 @@ export const EMPTY_ACTION_STATE: ActionState = {
   timestamp: Date.now()
 }
 
-export const formErrorToActionState = (error: unknown): ActionState => {
+export const formErrorToActionState = (
+  error: unknown,
+  formData: FormData
+): ActionState => {
   // if validation error with Zod, return first error message
   if (error instanceof ZodError) {
     return {
       state: 'ERROR',
       message: error.errors[0].message,
+      playload: formData,
       fieldErrors: error.flatten().fieldErrors,
       timestamp: Date.now()
     }
@@ -29,6 +34,7 @@ export const formErrorToActionState = (error: unknown): ActionState => {
     return {
       state: 'ERROR',
       message: error.message,
+      playload: formData,
       fieldErrors: {},
       timestamp: Date.now()
     }
@@ -38,6 +44,7 @@ export const formErrorToActionState = (error: unknown): ActionState => {
     return {
       state: 'IDLE',
       message: 'An unknown error occurred',
+      playload: formData,
       fieldErrors: {},
       timestamp: Date.now()
     }
