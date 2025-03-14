@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { initialTickets } from '@/data'
 import { ticketPath } from '@/paths'
-import clsx from 'clsx'
 import {
   Card,
   CardContent,
@@ -9,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 const CheckIcon = () => (
   <svg
@@ -76,6 +76,9 @@ const TicketsPage = () => {
           All your tickets at one place
         </p>
       </div>
+
+      <Separator />
+
       <div className="animate-fade-from-top flex flex-1 flex-col items-center gap-y-4">
         {initialTickets.map((ticket) => (
           <Card key={ticket.id} className="w-full max-w-[420px]">
