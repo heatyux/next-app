@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ticketPath } from '@/paths'
@@ -24,14 +22,12 @@ const TicketItem = ({ ticket, isDetail }: TicketProps) => {
     </Button>
   )
 
-  const handlerDeleteTicket = async () => {
-    await deleteTicket(ticket.id)
-  }
-
   const deleteButton = (
-    <Button variant="outline" size="icon" onClick={handlerDeleteTicket}>
-      <LucideTrash className="h-4 w-4" />
-    </Button>
+    <form action={deleteTicket.bind(null, ticket.id)}>
+      <Button variant="outline" size="icon">
+        <LucideTrash className="h-4 w-4" />
+      </Button>
+    </form>
   )
 
   return (
