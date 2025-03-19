@@ -9,6 +9,7 @@ import { SubmitButton } from '@/components/form/submit-button'
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state'
 import type { Ticket } from '@prisma/client'
 import { FieldError } from '@/components/form/field-erros'
+import { useActionFeedback } from '@/components/form/hooks/use-action-feedback'
 
 type TicketUpsertFormProps = {
   ticket?: Ticket
@@ -19,6 +20,17 @@ const TicketUpsertForm: React.FC<TicketUpsertFormProps> = ({ ticket }) => {
     upsertTicket.bind(null, ticket?.id),
     EMPTY_ACTION_STATE,
   )
+
+  useActionFeedback(actionState, {
+    onSuccess: ({ actionState }) => {
+      console.log(actionState.message)
+      // TODO optionally handle success
+    },
+    onError: ({ actionState }) => {
+      console.log(actionState.message)
+      // TODO optionally handle error
+    },
+  })
 
   return (
     <form action={action} className="flex flex-col gap-y-2">
@@ -43,8 +55,6 @@ const TicketUpsertForm: React.FC<TicketUpsertFormProps> = ({ ticket }) => {
       <FieldError actionState={actionState} name="content" />
 
       <SubmitButton label={ticket ? 'Edit' : 'Create'} />
-
-      {actionState.message}
     </form>
   )
 }
