@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { ActionState } from '../utils/to-action-state'
 
 type OnArgs = {
@@ -14,12 +14,20 @@ export const useActionFeedback = (
   actionState: ActionState,
   options: UseActionFeedBackOptions,
 ) => {
+  const prevTimestamp = useRef(actionState.timeStamp)
+  const isUpdate = prevTimestamp.current !== actionState.timeStamp
+
   useEffect(() => {
+    if (!isUpdate) {
+      return
+    }
+
     if (actionState.status === 'SUCCESS') {
       options.onSuccess?.({ actionState })
     }
     if (actionState.status === 'ERROR') {
       options.onError?.({ actionState })
     }
-  }, [actionState, options])
+    prevTimestamp.current = actionState.timeStamp
+  }, [isUpdate, actionState, options])
 }
