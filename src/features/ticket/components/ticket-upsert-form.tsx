@@ -10,6 +10,7 @@ import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state'
 import type { Ticket } from '@prisma/client'
 import { FieldError } from '@/components/form/field-erros'
 import { useActionFeedback } from '@/components/form/hooks/use-action-feedback'
+import { toast } from 'sonner'
 
 type TicketUpsertFormProps = {
   ticket?: Ticket
@@ -23,12 +24,14 @@ const TicketUpsertForm: React.FC<TicketUpsertFormProps> = ({ ticket }) => {
 
   useActionFeedback(actionState, {
     onSuccess: ({ actionState }) => {
-      console.log(actionState.message)
-      // TODO optionally handle success
+      if (actionState.message) {
+        toast.success(actionState.message)
+      }
     },
     onError: ({ actionState }) => {
-      console.log(actionState.message)
-      // TODO optionally handle error
+      if (actionState.message) {
+        toast.error(actionState.message)
+      }
     },
   })
 
