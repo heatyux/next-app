@@ -6,7 +6,7 @@ const config = {
   tabWidth: 2,
   endOfLine: 'auto',
   bracketSpacing: true,
-  plugins: ['prettier-plugin-tailwindcss'],
+  plugins: ['prettier-plugin-tailwindcss', 'simple-import-sort'],
 }
 
 export default config
