@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Header } from '@/components/header'
+import { RedirectToast } from '@/components/redirect-toast'
 import { ThemeProvider } from '@/components/theme/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -41,6 +42,7 @@ export default function RootLayout({
             {children}
           </main>
           <Toaster expand />
+          <RedirectToast />
         </ThemeProvider>
       </body>
     </html>
