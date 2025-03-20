@@ -53,6 +53,7 @@ const TicketItem = ({ ticket, isDetail }: TicketProps) => {
 
   const moreMenu = (
     <TicketMoreMenu
+      ticket={ticket}
       trigger={
         <Button variant="outline" size="icon">
           <LucideMoreVertical className="h-4 w-4" />
