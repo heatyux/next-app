@@ -23,8 +23,12 @@ const TicketUpsertForm: React.FC<TicketUpsertFormProps> = ({ ticket }) => {
     EMPTY_ACTION_STATE,
   )
 
+  const handleSuccess = () => {
+    console.log('Success Handler')
+  }
+
   return (
-    <Form actionState={actionState} action={action}>
+    <Form actionState={actionState} action={action} onSuccess={handleSuccess}>
       <Label htmlFor="title">Title</Label>
       <Input
         id="title"
