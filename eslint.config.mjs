@@ -32,7 +32,7 @@ const eslintConfig = [
         },
       ],
       'simple-import-sort/exports': 'error',
-      "react/prop-types": 'off',
+      'react/prop-types': 'off',
     },
     parserOptions: {
       sourceType: 'module',
