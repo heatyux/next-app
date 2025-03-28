@@ -53,7 +53,6 @@ export const signUp = async (_actionState: ActionState, formData: FormData) => {
 
     const session = await lucia.createSession(user.id, {})
     const sessionCookie = lucia.createSessionCookie(session.id)
-    console.log('sessionCookie:', sessionCookie)
 
     const cookie = await cookies()
     cookie.set(
@@ -66,10 +65,14 @@ export const signUp = async (_actionState: ActionState, formData: FormData) => {
       error instanceof PrismaClientKnownRequestError &&
       error.code === 'P2002'
     ) {
-      return toActionState('ERROR', 'Either email or username already in use')
+      return toActionState(
+        'ERROR',
+        'Either email or username already in use',
+        formData,
+      )
     }
 
-    return formErrorToActionState(error)
+    return formErrorToActionState(error, formData)
   }
 
   redirect(ticketsPath())
