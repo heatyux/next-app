@@ -1,27 +1,20 @@
 'use client'
 
-import { User as AuthUser } from 'lucia'
 import { LucideKanban, LucideLogOut } from 'lucide-react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { buttonVariants } from '@/components/ui/button'
 import { signOut } from '@/features/auth/actions/sign-out'
-import { getAuth } from '@/features/auth/queries/get-auth'
+import { useAuth } from '@/features/auth/hooks/use-auth'
 import { homePath, signInPath, signUpPath, ticketsPath } from '@/paths'
 import { SubmitButton } from './form/submit-button'
 import { ThemeSwitcher } from './theme/theme-switcher'
 
 const Header = () => {
-  const [user, setUser] = useState<AuthUser | null>(null)
+  const { user, isFetched } = useAuth()
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { user } = await getAuth()
-      setUser(user)
-    }
-
-    fetchUser()
-  }, [])
+  if (!isFetched) {
+    return null
+  }
 
   const navItems = user ? (
     <>
@@ -54,7 +47,7 @@ const Header = () => {
   )
 
   return (
-    <nav className="supports-backdrop-blur:bg-background/60 bg-background/95 fixed top-0 right-0 left-0 z-20 flex w-full justify-between border-b px-5 py-2.5 backdrop-blur">
+    <nav className="animate-header-from-top supports-backdrop-blur:bg-background/60 bg-background/95 fixed top-0 right-0 left-0 z-20 flex w-full justify-between border-b px-5 py-2.5 backdrop-blur">
       <div>
         <Link
           href={homePath()}
