@@ -1,4 +1,3 @@
-import type { Prisma } from '@prisma/client'
 import clsx from 'clsx'
 import {
   LucideArrowUpRightFromSquare,
@@ -17,14 +16,11 @@ import {
 import { ticketEditPath, ticketPath } from '@/paths'
 import { toCurrencyFromCent } from '@/utils/currency'
 import { TICKET_ICONS } from '../constants'
+import type { TicketWithMetadata } from '../types'
 import { TicketMoreMenu } from './ticket-more-menu'
 
 type TicketProps = {
-  ticket: Prisma.TicketGetPayload<{
-    include: {
-      user: true
-    }
-  }>
+  ticket: TicketWithMetadata
   isDetail?: boolean
 }
 
