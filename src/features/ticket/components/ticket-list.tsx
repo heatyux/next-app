@@ -3,11 +3,11 @@ import { SearchInput } from '@/components/search-input'
 import { SortSelect } from '@/components/sort-select'
 import { TicketItem } from '@/features/ticket/components/ticket-item'
 import { getTickets } from '@/features/ticket/queries/get-tickets'
-import { SearchParams } from '../search-params'
+import { ParseSearchParams } from '../search-params'
 
 type TicketListProps = {
   userId?: string
-  searchParams: SearchParams
+  searchParams: ParseSearchParams
 }
 
 const TicketList: React.FC<TicketListProps> = async ({
