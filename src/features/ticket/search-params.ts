@@ -2,7 +2,7 @@ import { createSearchParamsCache, parseAsString } from 'nuqs/server'
 
 export const searchParser = parseAsString.withDefault('').withOptions({
   shallow: false,
-  clearOnDefault: false,
+  clearOnDefault: true,
 })
 
 export const sortParser = {

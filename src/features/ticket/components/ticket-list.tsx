@@ -1,9 +1,9 @@
 import { Placeholder } from '@/components/placeholder'
-import { SearchInput } from '@/components/search-input'
-import { SortSelect } from '@/components/sort-select'
 import { TicketItem } from '@/features/ticket/components/ticket-item'
 import { getTickets } from '@/features/ticket/queries/get-tickets'
 import { ParseSearchParams } from '../search-params'
+import { TicketSearchInput } from './ticket-search-input'
+import { TicketSortSelect } from './ticket-sort-select'
 
 type TicketListProps = {
   userId?: string
@@ -19,8 +19,8 @@ const TicketList: React.FC<TicketListProps> = async ({
   return (
     <div className="animate-fade-from-top flex flex-1 flex-col items-center gap-y-4">
       <div className="flex w-full max-w-[420px] gap-x-2">
-        <SearchInput placeholder="Search tickets ..." />
-        <SortSelect
+        <TicketSearchInput placeholder="Search tickets ..." />
+        <TicketSortSelect
           options={[
             { label: 'Newest', sortKey: 'createdAt', sortValue: 'desc' },
             { label: 'Oldest', sortKey: 'createdAt', sortValue: 'asc' },
