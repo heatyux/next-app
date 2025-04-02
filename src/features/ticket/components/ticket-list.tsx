@@ -22,8 +22,8 @@ const TicketList: React.FC<TicketListProps> = async ({
         <SearchInput placeholder="Search tickets ..." />
         <SortSelect
           options={[
-            { label: 'Newest', value: 'newest' },
-            { label: 'Bounty', value: 'bounty' },
+            { label: 'Newest', sortKey: 'createdAt', sortValue: 'desc' },
+            { label: 'Bounty', sortKey: 'bounty', sortValue: 'desc' },
           ]}
         />
       </div>

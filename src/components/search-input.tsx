@@ -2,14 +2,14 @@
 
 import { useQueryState } from 'nuqs'
 import { useDebouncedCallback } from 'use-debounce'
-import { searchParse } from '@/features/ticket/search-params'
+import { searchParser } from '@/features/ticket/search-params'
 import { Input } from './ui/input'
 
 type SearchInputProps = {
   placeholder: string
 }
 const SearchInput = ({ placeholder }: SearchInputProps) => {
-  const [search, setSearch] = useQueryState('search', searchParse)
+  const [search, setSearch] = useQueryState('search', searchParser)
 
   const handleSearch = useDebouncedCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
