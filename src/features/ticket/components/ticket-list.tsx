@@ -23,6 +23,7 @@ const TicketList: React.FC<TicketListProps> = async ({
         <SortSelect
           options={[
             { label: 'Newest', sortKey: 'createdAt', sortValue: 'desc' },
+            { label: 'Oldest', sortKey: 'createdAt', sortValue: 'asc' },
             { label: 'Bounty', sortKey: 'bounty', sortValue: 'desc' },
           ]}
         />
